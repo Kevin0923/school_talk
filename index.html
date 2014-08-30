@@ -1,0 +1,285 @@
+﻿<!DOCTYPE html> 
+<html> 
+	<head> 
+	<title>校园随手拍</title> 
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+	<link rel="stylesheet" href="resource/jquery/jquery.mobile-1.1.1.min.css" />
+	<script src="resource/jquery/jquery-1.7.1.min.js"></script>
+	<script src="resource/jquery/jquery.mobile-1.1.1.min.js"></script>
+
+	<style type="text/css">
+	video {
+		width:100%;
+		z-index:-1;
+	}
+	img {
+		vertical-align: middle;
+	}
+	#page {
+		 background:#7cc7ed;
+	}
+	#header {
+		background: #fd7776;
+	}
+	#footer {
+		background: #333;
+		height: 65px;
+	}
+	#footer img {
+		height: 50px;
+	}
+	#header #arrow-d{
+		position: absolute; right:50px;
+	}
+	#content {
+		margin: 0 13px;
+	}
+	#content li {
+		padding:0px;
+		margin-bottom: 10px;
+	}
+	#content li .head_logo {
+		width:70px; height:70px;
+		border: solid 5px #fd7776;
+		background-repeat: no-repeat;
+		-moz-border-radius: 50px;
+		-webkit-border-radius: 50px;
+		border-radius: 50px;
+	}
+	#content li .detail {
+		background:#fff;
+		padding: 15px 15px 5px 15px;
+		z-index:1000;
+	}
+	#content li .display-name {
+		color: #fd7776;
+		font-size: x-large;
+		padding-left: 6px;
+	}
+	#content li .publishTime {
+		color: #9f9e9e;
+		font-size: medium;
+		right: 10px;
+		position: absolute;
+		padding-top: 28px;
+	}
+	.upImg {
+		border: solid 1px gray;
+		background-repeat: no-repeat;
+		-moz-border-radius: 5px;
+		-webkit-border-radius: 5px;
+		border-radius: 5px;
+		width: 50px;
+		height: 30px;
+		line-height: 30px;
+		text-align: center;
+		display:inline;
+		cursor:pointer;
+	}	
+	.teaImg {
+		right: 30px;
+		position: absolute;
+
+		border: solid 1px gray;
+		background-repeat: no-repeat;
+		-moz-border-radius: 5px;
+		-webkit-border-radius: 5px;
+		border-radius: 5px;
+		width: 50px;
+		height: 30px;
+		line-height: 30px;
+		text-align: center;
+		display:inline;
+		cursor:pointer;
+	}
+	#content .videoDesc {
+		display: block;
+		margin: 5px 15px 0 64px;
+		color: #555555;
+	}
+	.imageInputText {
+		BACKGROUND-REPEAT: no-repeat; 
+		background-position: center center;
+	}
+	#upImgInput {
+		BACKGROUND-IMAGE: url(resource/img/up.png); 
+		width:50px; 
+		cursor:pointer;
+		BACKGROUND-REPEAT: no-repeat; 
+		background-position: center center;
+		display:inline;
+		vertical-align: middle;
+	}
+	#teaImg {
+		BACKGROUND-IMAGE: url(resource/img/tea.png); 
+		width:50px; 
+		cursor:pointer;
+		BACKGROUND-REPEAT: no-repeat; 
+		background-position: center center;
+		position:absolute;
+		display:inline;
+		right:1em;
+	}
+	.upCounter {
+		font-size: larger;
+		color: #fd7776;
+		margin-left: 5px;
+	}
+	.comments {
+		-webkit-border-radius: 0;
+		border-radius: 0;
+		BACKGROUND-REPEAT: no-repeat; 
+		background-position: center left;
+		background-position-x: 10px;
+		background-position-y: 10px;
+		border-color: #aaa;
+		text-height:20px;
+	}
+	.commentDiv img {
+		position: absolute;
+		right: 1em;
+		width: 50px;
+		height: 37px;
+		padding: 8px 0;
+	}
+	</style>
+	
+	<script type="text/javascript">
+	function playPause(cls) {
+		var video = $(cls).parent().parent().children('video')[0];
+		if(video.paused) {
+			video.play();
+			$(cls).hide();
+		} else {
+			video.pause();
+			$(cls).show();
+		}
+	}
+	function vote(obj) {
+		var counter = $(obj).parent().find('.counter');
+		counter.html(parseInt(counter.html()) + 1);
+		$(obj).blur();
+	}
+	function focusAndChange() {
+		
+	}
+
+	$(document).ready(function(){
+	  $(".playButtonCls").css('width', '30%');
+	});
+	</script>
+	
+</head>
+<body> 
+<div id="page" data-role="page">
+	<div id="header" data-role="header" data-position="fixed">
+		<div style="margin-left: 10px;" class="h60">
+			<h3>
+				<span>校园随手拍</span>
+				<span id="arrow-d" class="ui-icon ui-icon-arrow-d"></span>
+			</h3>
+		</div>
+	</div>
+	
+	<div id="content" data-role="content">
+		<ul data-role="listview" style="margin-top: 0;">
+		   <li>
+				<div>
+					<video preload="meta" preload="preload" onclick="playPause('.playButtonCls');">
+						<!--
+                        <source src="resource/video/001.mp4" type="video/mp4">
+                        -->
+					</video>
+					<div onclick="playPause('.playButtonCls');" style="position: absolute;top:8%; text-align: center; width: 100%;">
+						<img class="playButtonCls" src="resource/img/list-play-btn.png" />
+					</div>
+					<div class="detail">
+						<img class="head_logo" src="resource/head/1.jpg"/>
+						<span class="display-name">海贼王</span>
+						<span class="publishTime">3小时前</span>
+						<span class="videoDesc">
+						《ONE PIECE》（海贼王、航海王）。由东映动画改编自尾田荣一郎创作漫画的同名动画。于1999年10月20日在日本富士电视台开始播放，至今仍在播放中。中国搜狐视频网站拥有该片中国大陆地区独家版权，点阅率超过16亿次。
+						</span>
+						<div>
+                           	<img class="upImg" src="resource/img/up.png" onclick="vote(this);"/>
+                            <span class="upCounter">(<span class="counter">0</span>)</span>
+                            <img class="teaImg" src="resource/img/tea.png" onclick="vote(this);"/>
+						</div>
+					</div>
+					<div class="commentDiv" style="padding: 15px 15px 5px 15px; margin-right: 50px;">
+						<textarea class="comments" type="text" style="BACKGROUND-IMAGE: url(resource/img/comment.png); padding-left: 50px; width: 98%; height: 10px; display:inline; background-position: 0 10px; resize: none; max-height: 150px;"></textarea>
+						<img class="okButton" src="resource/img/ok.png"/>
+					</div>
+				</div>
+		   </li>
+		   <li>
+				<video preload="meta" preload="preload">
+					<source src="resource/video/001.mp4" type="video/mp4">
+				</video>
+				<div class="detail">
+					<img class="head_logo" src="resource/head/2.jpg" />
+					<h3><a href="index.html">George V</a></h3>
+					<p>Reign 25 Years</p>
+					<a href="#home">Details</a>
+				</div>
+		   </li>
+		   <li>
+				<video preload="meta" preload="preload">
+					<source src="resource/video/001.mp4" type="video/mp4">
+				</video>
+				<div class="detail">
+					<img class="head_logo" src="resource/head/3.jpg"/>
+					<h3><a href="index.html">Henry VIII</a></h3>
+					<p>Reign 37 Years</p>
+					<a href="#home">Details</a>
+				</div>
+		   </li>
+		   <li>
+				<video preload="meta" preload="preload">
+					<source src="resource/video/001.mp4" type="video/mp4">
+				</video>
+				<div class="detail">
+					<img class="head_logo" src="resource/head/4.jpg" />
+					<h3><a href="index.html">George V</a></h3>
+					<p>Reign 25 Years</p>
+					<a href="#home">Details</a>
+				</div>
+		   </li>
+		   <li>
+				<video preload="meta" preload="preload">
+					<source src="resource/video/001.mp4" type="video/mp4">
+				</video>
+				<div class="detail">
+					<img class="head_logo" src="resource/head/5.jpg"/>
+					<h3><a href="index.html">Henry VIII</a></h3>
+					<p>Reign 37 Years</p>
+					<a href="#home">Details</a>
+				</div>
+		   </li>
+		   <li>
+				<video preload="meta" preload="preload">
+					<source src="resource/video/001.mp4" type="video/mp4">
+				</video>
+				<div class="detail">
+					<img class="head_logo" src="resource/head/6.jpg" />
+					<h3><a href="index.html">George V</a></h3>
+					<p>Reign 25 Years</p>
+					<a href="#home">Details</a>
+				</div>
+		   </li>
+		</ul>
+	</div>
+	<!--
+	<fieldset class="ui-grid-a">
+		<div class="ui-block-a"><button type="submit" data-theme="c">Cancel</button></div>
+		<div class="ui-block-b"><button type="submit" data-theme="b">Submit</button></div>	   
+	</fieldset>
+	-->
+	<div id="footer" data-role="footer" data-position="fixed" >
+		<h1>
+			<img src="resource/img/camera.png"/>
+		</h1>
+	</div>
+</div><!-- /page -->
+</body>
+</html>
