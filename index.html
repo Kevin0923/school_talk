@@ -160,8 +160,24 @@
 		counter.html(parseInt(counter.html()) + 1);
 		$(obj).blur();
 	}
-	function focusAndChange() {
-		
+	function mouseOver(obj) {
+		var src = $(obj).attr('src');
+		if (src.indexOf('send.png') > 0) {
+			$(obj).css('display','none');
+			$(obj).parent().children('.send_focus').css('display','inline');
+		} else {
+			$(obj).css('display','none');
+			$(obj).parent().children('.send_unfocus').css('display','inline');
+		}
+	}
+	function mouseOut(obj) {
+		if (src.indexOf('send.png') > 0) {
+			$(obj).css('display','none');
+			$(obj).parent().children('.send_focus').css('display','inline');
+		} else {
+			$(obj).css('display','none');
+			$(obj).parent().children('.send_unfocus').css('display','inline');
+		}
 	}
 
 	$(document).ready(function(){
@@ -208,7 +224,7 @@
 					</div>
 					<div class="commentDiv" style="padding: 15px 15px 5px 15px; margin-right: 50px;">
 						<textarea class="comments" type="text" style="BACKGROUND-IMAGE: url(resource/img/comment.png); padding-left: 50px; width: 98%; height: 10px; display:inline; background-position: 0 10px; resize: none; max-height: 150px;"></textarea>
-						<img class="okButton" src="resource/img/ok.png"/>
+						<img class="okButton" src="resource/img/send.png"/>
 					</div>
 				</div>
 		   </li>
